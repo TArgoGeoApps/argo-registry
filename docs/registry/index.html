@@ -75,7 +75,9 @@
   .covnote b{color:var(--gold);font-weight:500}
 
   /* census */
-  table{width:100%;border-collapse:collapse;margin-top:26px;font-size:16.5px}
+  .tablewrap{margin-top:26px;overflow-x:auto;-webkit-overflow-scrolling:touch;
+    border:1px solid rgba(212,169,78,0.15);border-radius:4px}
+  table{width:100%;min-width:640px;border-collapse:collapse;font-size:16.5px}
   th{font-weight:400;text-transform:uppercase;letter-spacing:0.16em;font-size:12.5px;color:var(--gold);
     text-align:left;padding:12px 14px;border-bottom:1px solid var(--line)}
   td{padding:14px;border-bottom:1px solid rgba(212,169,78,0.1);color:var(--ink)}
@@ -157,12 +159,12 @@
   <h2 class="serif" style="margin-top:54px">The census</h2>
   <div class="rule"></div>
   <p class="lead">The registry publishes the standing count of every stone in every series — issued, reserved, retired, and demonstration. The census is the whole population. There are no other Argo diamonds.</p>
-  <table>
+  <div class="tablewrap"><table>
     <tr><th>Series</th><th>Issued</th><th>Reserved</th><th>Retired Unissued</th><th>Demonstration</th><th>Ceiling</th></tr>
     <tr><td>First Series · 2027</td><td class="num">0</td><td class="num">5</td><td class="num">0</td><td class="num">—</td><td class="num">TBD</td></tr>
     <tr><td>Black Diamond Series · to follow</td><td class="num">0</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">TBD</td></tr>
     <tr><td>Demonstration Series · D (lab-grown) / DN (natural)</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">0</td><td class="num">—</td></tr>
-  </table>
+  </table></div>
   <div class="asof">Counts are current and true: nothing has been issued and no demonstration stone is finished. Series ceilings are declared before each series opens (TBD until then). Demonstration stones are never sold; their count is recorded as they are made. The serial records shown by the lookup are design specimens until first issuance. Live census is attested annually.</div>
 </section>
 
