@@ -90,6 +90,7 @@
     border-radius:3px;padding:18px 22px}
   .covcard .t{font-family:'Cormorant Garamond',serif;font-size:23px;color:var(--gold-pale);margin-bottom:6px}
   .covcard .d{font-size:16px;line-height:1.65;color:var(--dim)}
+  .covcard .d em{color:#6f6c62;font-style:italic;font-size:14.5px}
 
   /* verification */
   .vgrid{margin-top:26px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
@@ -116,7 +117,31 @@
   </svg>
   <h1>THE ARGO REGISTRY</h1>
   <div class="sub">The public book of a closed series</div>
-  <div class="mockbadge">DESIGN MOCKUP · SPECIMEN DATA ONLY</div>
+  <svg class="motto-banner" style="width:min(560px,92vw);height:auto;display:block;margin:18px auto 0" viewBox="0 0 640 56">
+    <defs>
+      <linearGradient id="bandGoldH" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#8a6d2f"/><stop offset="0.22" stop-color="#e9d08f"/>
+        <stop offset="0.5" stop-color="#d4b06a"/><stop offset="0.78" stop-color="#b08f55"/>
+        <stop offset="1" stop-color="#7a5f28"/>
+      </linearGradient>
+      <linearGradient id="tailGoldH" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#6e5628"/><stop offset="0.5" stop-color="#a98b52"/>
+        <stop offset="1" stop-color="#5c4820"/>
+      </linearGradient>
+      <filter id="neonWH" x="-20%" y="-80%" width="140%" height="260%"><feGaussianBlur stdDeviation="3.2"/></filter>
+      <filter id="neonTH" x="-20%" y="-60%" width="140%" height="220%"><feGaussianBlur stdDeviation="0.7"/></filter>
+    </defs>
+    <polygon points="60,18 10,18 24,33 10,48 60,48" fill="url(#tailGoldH)" stroke="#4a3a19" stroke-width="1"/>
+    <polygon points="580,18 630,18 616,33 630,48 580,48" fill="url(#tailGoldH)" stroke="#4a3a19" stroke-width="1"/>
+    <polygon points="60,40 60,48 74,40" fill="#4a3a19"/>
+    <polygon points="580,40 580,48 566,40" fill="#4a3a19"/>
+    <rect x="60" y="6" width="520" height="38" fill="url(#bandGoldH)" stroke="#6e5a35" stroke-width="1"/>
+    <line x1="62" y1="9" x2="578" y2="9" stroke="#f4e3b2" stroke-width="1" opacity="0.8"/>
+    <text x="320" y="33" text-anchor="middle" font-family="Cormorant Garamond, serif" font-style="italic" font-weight="600" font-size="25.5" letter-spacing="0.2" fill="#2563eb" opacity="0.5" filter="url(#neonWH)">A star as rare as the one who wears it.</text>
+    <text x="320" y="33" text-anchor="middle" font-family="Cormorant Garamond, serif" font-style="italic" font-weight="600" font-size="25.5" letter-spacing="0.2" fill="#3b82f6" opacity="0.85" filter="url(#neonTH)">A star as rare as the one who wears it.</text>
+    <text x="320" y="33" text-anchor="middle" font-family="Cormorant Garamond, serif" font-style="italic" font-weight="600" font-size="25.5" letter-spacing="0.2" fill="#1d3dff">A star as rare as the one who wears it.</text>
+  </svg>
+  
 </header>
 
 <nav>
@@ -138,7 +163,7 @@
     <input id="q" placeholder="e.g.  ARGO D-2027-001  or  006" autocomplete="off">
     <button onclick="look()">Verify</button>
   </div>
-  <div class="hint">Specimen records in this mockup: <code>D-2027-001</code> · <code>001</code> · <code>006</code> · try <code>014</code> for a serial that does not exist</div>
+  <div class="hint">Example records: <code>D-2027-001</code> · <code>001</code> · <code>006</code> · try <code>014</code> for a serial that does not exist</div>
   <div id="result"></div>
 </section>
 
@@ -151,21 +176,21 @@
     <div class="covcard"><div class="t">The First Series · 2027</div>
       <div class="d">The inaugural series. Natural white diamonds of the house standard, serial-numbered from N° 006 — the lowest numbers are reserved to the archive. The series that opens the book.</div></div>
     <div class="covcard"><div class="t">The Black Diamond Series</div>
-      <div class="d">Natural black diamonds — the diamond that absorbs all light. A closed, numbered series following the First Series. The house favors platinum; the setting is the owner's choice. Its number, year, and covenants publish before the first stone.</div></div>
+      <div class="d">Natural black diamonds — the diamond that absorbs all light. A closed, numbered series. Its number, year, and covenants publish before the first stone.</div></div>
     <div class="covcard"><div class="t">Declared series to come</div>
-      <div class="d">The Argo Sapphire (including padparadscha), The Argo Ruby, and The Argo Spinel — each a closed, numbered series of natural stones. The Argo Alexandrite is under consideration. Each series opens when its covenants are published here.</div></div>
+      <div class="d">The Argo Sapphire (including padparadscha), The Argo Ruby, and The Argo Spinel — each a closed, numbered series of natural stones. Each series opens when its covenants are published here.</div></div>
   </div>
 
   <h2 class="serif" style="margin-top:54px">The census</h2>
   <div class="rule"></div>
   <p class="lead">The registry publishes the standing count of every stone in every series — issued, reserved, retired, and demonstration. The census is the whole population. There are no other Argo diamonds.</p>
   <div class="tablewrap"><table>
-    <tr><th>Series</th><th>Issued</th><th>Reserved</th><th>Retired Unissued</th><th>Demonstration</th><th>Ceiling</th></tr>
-    <tr><td>First Series · 2027</td><td class="num">0</td><td class="num">5</td><td class="num">0</td><td class="num">—</td><td class="num">TBD</td></tr>
-    <tr><td>Black Diamond Series · to follow</td><td class="num">0</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">TBD</td></tr>
-    <tr><td>Demonstration Series · D (lab-grown) / DN (natural)</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">0</td><td class="num">—</td></tr>
+    <tr><th>Series</th><th>Opens</th><th>Issued</th><th>Reserved</th><th>Retired Unissued</th><th>Demonstration</th><th>Ceiling</th></tr>
+    <tr><td>First Series · 2027</td><td class="num">2027</td><td class="num">0</td><td class="num">5</td><td class="num">0</td><td class="num">—</td><td class="num">TBD</td></tr>
+    <tr><td>Black Diamond Series</td><td class="num">TBD</td><td class="num">0</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">TBD</td></tr>
+    <tr><td>Demonstration Series · D (lab-grown) / DN (natural)</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">0</td><td class="num">—</td></tr>
   </table></div>
-  <div class="asof">Counts are current and true: nothing has been issued and no demonstration stone is finished. Series ceilings are declared before each series opens (TBD until then). Demonstration stones are never sold; their count is recorded as they are made. The serial records shown by the lookup are design specimens until first issuance. Live census is attested annually.</div>
+  <div class="asof">Counts are current and true: nothing has been issued and no demonstration stone is finished. Series ceilings and opening dates are declared before each series opens. Demonstration stones are never sold; their count is recorded as they are made. Live census is attested annually.</div>
 </section>
 
 <!-- COVENANTS -->
@@ -207,14 +232,14 @@
   <h2 class="serif">How verification works</h2>
   <div class="rule"></div>
   <p class="lead">Nothing in the Argo program asks for trust. Each claim is checkable against a party who does not answer to the house.</p>
-  <div class="vgrid">
-    <div class="vcard"><div class="t">The stone</div>
+  <div class="cov">
+    <div class="covcard"><div class="t">The stone</div>
       <div class="d">The girdle inscription matches this registry and the stone's independent grading report. <em>Checkable with any jeweler's loupe and the lab's own report-lookup service.</em></div></div>
-    <div class="vcard"><div class="t">The geometry</div>
+    <div class="covcard"><div class="t">The geometry</div>
       <div class="d">Each stone passes a scan-verified conformance test before issuance; the certificate states the pass and its date. <em>The scan itself is sealed in the house archive — conformance is attested, geometry is never published.</em></div></div>
-    <div class="vcard"><div class="t">The counts</div>
+    <div class="covcard"><div class="t">The counts</div>
       <div class="d">The census on this site is examined annually by an independent CPA firm; the attestation letter is published here. <em>The firm is named; the letter is addressed for public distribution.</em></div></div>
-    <div class="vcard"><div class="t">The covenants</div>
+    <div class="covcard"><div class="t">The covenants</div>
       <div class="d">Each certificate is sworn, county-recorded, surety-bonded, and enforceable as an express warranty. <em>Certified copies are available from the county clerk by anyone, forever.</em></div></div>
   </div>
   <p class="fine">The single exception to publication is the design of the cut itself — its angles, arrangement, and scan files — which is protected intellectual property and is never part of any public record. Everything else is upfront.</p>
@@ -229,8 +254,31 @@
 
 <footer>
   <div class="f1">The Argo Diamond</div>
-  <div class="f2">A star as rare as the one who wears it. · First Series · 2027<br>
-  Design mockup — all records, counts, and documents shown are specimens for design purposes and do not represent issued stones.</div>
+  <svg class="motto-banner" style="width:min(440px,92vw);height:auto;display:block;margin:18px auto 0" viewBox="0 0 640 56">
+    <defs>
+      <linearGradient id="bandGoldF" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#8a6d2f"/><stop offset="0.22" stop-color="#e9d08f"/>
+        <stop offset="0.5" stop-color="#d4b06a"/><stop offset="0.78" stop-color="#b08f55"/>
+        <stop offset="1" stop-color="#7a5f28"/>
+      </linearGradient>
+      <linearGradient id="tailGoldF" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#6e5628"/><stop offset="0.5" stop-color="#a98b52"/>
+        <stop offset="1" stop-color="#5c4820"/>
+      </linearGradient>
+      <filter id="neonWF" x="-20%" y="-80%" width="140%" height="260%"><feGaussianBlur stdDeviation="3.2"/></filter>
+      <filter id="neonTF" x="-20%" y="-60%" width="140%" height="220%"><feGaussianBlur stdDeviation="0.7"/></filter>
+    </defs>
+    <polygon points="60,18 10,18 24,33 10,48 60,48" fill="url(#tailGoldF)" stroke="#4a3a19" stroke-width="1"/>
+    <polygon points="580,18 630,18 616,33 630,48 580,48" fill="url(#tailGoldF)" stroke="#4a3a19" stroke-width="1"/>
+    <polygon points="60,40 60,48 74,40" fill="#4a3a19"/>
+    <polygon points="580,40 580,48 566,40" fill="#4a3a19"/>
+    <rect x="60" y="6" width="520" height="38" fill="url(#bandGoldF)" stroke="#6e5a35" stroke-width="1"/>
+    <line x1="62" y1="9" x2="578" y2="9" stroke="#f4e3b2" stroke-width="1" opacity="0.8"/>
+    <text x="320" y="33" text-anchor="middle" font-family="Cormorant Garamond, serif" font-style="italic" font-weight="600" font-size="25.5" letter-spacing="0.2" fill="#2563eb" opacity="0.5" filter="url(#neonWF)">A star as rare as the one who wears it.</text>
+    <text x="320" y="33" text-anchor="middle" font-family="Cormorant Garamond, serif" font-style="italic" font-weight="600" font-size="25.5" letter-spacing="0.2" fill="#3b82f6" opacity="0.85" filter="url(#neonTF)">A star as rare as the one who wears it.</text>
+    <text x="320" y="33" text-anchor="middle" font-family="Cormorant Garamond, serif" font-style="italic" font-weight="600" font-size="25.5" letter-spacing="0.2" fill="#1d3dff">A star as rare as the one who wears it.</text>
+  </svg>
+  <div class="f2" style="margin-top:16px">First Series · 2027</div>
 </footer>
 
 <script>

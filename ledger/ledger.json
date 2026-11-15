@@ -2,10 +2,10 @@
   "meta": {
     "mode": "mockup",
     "as_of": "2026-11-14",
-    "badge": "DESIGN MOCKUP · SPECIMEN DATA ONLY",
-    "census_note": "Counts are current and true: nothing has been issued and no demonstration stone is finished. Series ceilings are declared before each series opens (TBD until then). Demonstration stones are never sold; their count is recorded as they are made. The serial records shown by the lookup are design specimens until first issuance. Live census is attested annually.",
-    "footer_note": "Design mockup — all records, counts, and documents shown are specimens for design purposes and do not represent issued stones.",
-    "lookup_hint": "Specimen records in this mockup: <code>D-2027-001</code> · <code>001</code> · <code>006</code> · try <code>014</code> for a serial that does not exist"
+    "badge": "",
+    "census_note": "Counts are current and true: nothing has been issued and no demonstration stone is finished. Series ceilings and opening dates are declared before each series opens. Demonstration stones are never sold; their count is recorded as they are made. Live census is attested annually.",
+    "footer_note": "",
+    "lookup_hint": "Example records: <code>D-2027-001</code> · <code>001</code> · <code>006</code> · try <code>014</code> for a serial that does not exist"
   },
   "series_cards": [
     {
@@ -14,11 +14,11 @@
     },
     {
       "title": "The Black Diamond Series",
-      "body": "Natural black diamonds — the diamond that absorbs all light. A closed, numbered series following the First Series. The house favors platinum; the setting is the owner's choice. Its number, year, and covenants publish before the first stone."
+      "body": "Natural black diamonds — the diamond that absorbs all light. A closed, numbered series. Its number, year, and covenants publish before the first stone."
     },
     {
       "title": "Declared series to come",
-      "body": "The Argo Sapphire (including padparadscha), The Argo Ruby, and The Argo Spinel — each a closed, numbered series of natural stones. The Argo Alexandrite is under consideration. Each series opens when its covenants are published here."
+      "body": "The Argo Sapphire (including padparadscha), The Argo Ruby, and The Argo Spinel — each a closed, numbered series of natural stones. Each series opens when its covenants are published here."
     }
   ],
   "census": [
@@ -28,15 +28,17 @@
       "reserved": "5",
       "retired": "0",
       "demo": "—",
-      "ceiling": "TBD"
+      "ceiling": "TBD",
+      "opens": "2027"
     },
     {
-      "series": "Black Diamond Series · to follow",
+      "series": "Black Diamond Series",
       "issued": "0",
       "reserved": "—",
       "retired": "—",
       "demo": "—",
-      "ceiling": "TBD"
+      "ceiling": "TBD",
+      "opens": "TBD"
     },
     {
       "series": "Demonstration Series · D (lab-grown) / DN (natural)",
@@ -44,7 +46,8 @@
       "reserved": "—",
       "retired": "—",
       "demo": "0",
-      "ceiling": "—"
+      "ceiling": "—",
+      "opens": "—"
     }
   ],
   "authorizations": [

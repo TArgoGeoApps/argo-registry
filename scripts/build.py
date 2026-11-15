@@ -29,7 +29,7 @@ noindex = (
 
 badge = (
     f'<div class="mockbadge">{esc(meta["badge"])}</div>'
-    if meta.get("mode") == "mockup" else ""
+    if meta.get("badge") else ""
 )
 
 # --- series cards ---
@@ -42,6 +42,7 @@ series_cards = "\n".join(
 # --- census rows ---
 census_rows = "\n".join(
     f'    <tr><td>{esc(r["series"])}</td>'
+    f'<td class="num">{esc(r.get("opens","—"))}</td>'
     f'<td class="num">{esc(r["issued"])}</td>'
     f'<td class="num">{esc(r["reserved"])}</td>'
     f'<td class="num">{esc(r["retired"])}</td>'
