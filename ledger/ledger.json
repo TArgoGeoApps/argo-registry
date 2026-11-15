@@ -1,0 +1,172 @@
+{
+  "meta": {
+    "mode": "mockup",
+    "as_of": "2026-11-14",
+    "badge": "DESIGN MOCKUP · SPECIMEN DATA ONLY",
+    "census_note": "Counts are current and true: nothing has been issued and no demonstration stone is finished. Series ceilings are declared before each series opens (TBD until then). Demonstration stones are never sold; their count is recorded as they are made. The serial records shown by the lookup are design specimens until first issuance. Live census is attested annually.",
+    "footer_note": "Design mockup — all records, counts, and documents shown are specimens for design purposes and do not represent issued stones.",
+    "lookup_hint": "Specimen records in this mockup: <code>D-2027-001</code> · <code>001</code> · <code>006</code> · try <code>014</code> for a serial that does not exist"
+  },
+  "series_cards": [
+    {
+      "title": "The First Series · 2027",
+      "body": "The inaugural series. Natural white diamonds of the house standard, serial-numbered from N° 006 — the lowest numbers are reserved to the archive. The series that opens the book."
+    },
+    {
+      "title": "The Black Diamond Series",
+      "body": "Natural black diamonds — the diamond that absorbs all light. A closed, numbered series following the First Series. The house favors platinum; the setting is the owner's choice. Its number, year, and covenants publish before the first stone."
+    },
+    {
+      "title": "Declared series to come",
+      "body": "The Argo Sapphire (including padparadscha), The Argo Ruby, and The Argo Spinel — each a closed, numbered series of natural stones. The Argo Alexandrite is under consideration. Each series opens when its covenants are published here."
+    }
+  ],
+  "census": [
+    {
+      "series": "First Series · 2027",
+      "issued": "0",
+      "reserved": "5",
+      "retired": "0",
+      "demo": "—",
+      "ceiling": "TBD"
+    },
+    {
+      "series": "Black Diamond Series · to follow",
+      "issued": "0",
+      "reserved": "—",
+      "retired": "—",
+      "demo": "—",
+      "ceiling": "TBD"
+    },
+    {
+      "series": "Demonstration Series · D (lab-grown) / DN (natural)",
+      "issued": "—",
+      "reserved": "—",
+      "retired": "—",
+      "demo": "0",
+      "ceiling": "—"
+    }
+  ],
+  "authorizations": [
+    {
+      "title": "First Series · 2027",
+      "body": "To be announced · spring 2027."
+    }
+  ],
+  "stones": {
+    "D-2027-001": {
+      "serial": "ARGO D-2027-001",
+      "status": [
+        "DEMONSTRATION · NEVER FOR SALE",
+        "st-demo"
+      ],
+      "rows": [
+        [
+          "Series",
+          "Demonstration Series · D-2027"
+        ],
+        [
+          "Material",
+          "Laboratory-grown diamond"
+        ],
+        [
+          "Carat weight",
+          "1.39 ct  (specimen)"
+        ],
+        [
+          "Grading report",
+          "GIA — report no. on file  (specimen)"
+        ],
+        [
+          "Conformance certificate",
+          "PASS · verified by scan · date on file"
+        ],
+        [
+          "Girdle inscription",
+          "ARGO D-2027-001 · photomicrograph on file"
+        ],
+        [
+          "Setting record",
+          "Loose · house archive"
+        ],
+        [
+          "Standing",
+          "Flagged at creation: never to be sold. Irrevocable."
+        ]
+      ],
+      "note": "Demonstration stones exist to show the cut under NDA and at appointments. The series carries two prefixes: D– for laboratory-grown, DN– for natural. The first demonstration stone is laboratory-grown; the second is natural. Both are recorded, audited, and permanently excluded from commerce."
+    },
+    "001": {
+      "serial": "ARGO N° 001 — FIRST SERIES",
+      "status": [
+        "RESERVED · HOUSE ARCHIVE",
+        "st-reserved"
+      ],
+      "rows": [
+        [
+          "Series",
+          "First Series · 2027"
+        ],
+        [
+          "Standing",
+          "Reserved to the house archive under the published covenants. Serials 001–005 of the First Series are never offered."
+        ],
+        [
+          "Stone",
+          "Not yet cut. A reserved serial has no stone until the house cuts one under its standing rules."
+        ]
+      ],
+      "note": "The lowest numbers of a series are the house's own. Their absence from the market is a covenant, recorded here, audited annually."
+    },
+    "006": {
+      "serial": "ARGO N° 006 — FIRST SERIES",
+      "status": [
+        "ISSUED",
+        "st-issued"
+      ],
+      "rows": [
+        [
+          "Series",
+          "First Series · 2027"
+        ],
+        [
+          "Material",
+          "Natural white diamond  (specimen)"
+        ],
+        [
+          "Carat weight",
+          "2.08 ct  (specimen)"
+        ],
+        [
+          "Grading report",
+          "GIA — report no. on file  (specimen)"
+        ],
+        [
+          "Conformance certificate",
+          "PASS · verified by scan · 2027 (specimen)"
+        ],
+        [
+          "Girdle inscription",
+          "ARGO 006 · photomicrograph on file"
+        ],
+        [
+          "Issued through",
+          "The authorized jeweler of the First Series  (named on announcement)"
+        ],
+        [
+          "Setting record",
+          "Platinum ring · set by the authorized jeweler · 2027 (specimen)"
+        ],
+        [
+          "Certificate",
+          "Sworn · county-recorded · bonded · warranty  (numbers on certificate)"
+        ],
+        [
+          "Provenance",
+          "Issuance recorded 2027 · no transfers recorded. Later sales are verified by an authorized jeweler at the time of sale and recorded as events — no owner is named.  (specimen)"
+        ]
+      ],
+      "note": "N° 006 is the first commercial issuance of the First Series. This specimen record shows every field a buyer can verify; the design of the cut appears nowhere, by design."
+    }
+  }
+}

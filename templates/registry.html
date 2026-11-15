@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">%NOINDEX%
+<title>The Argo Registry</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Jost:wght@300;400;500&display=swap">
+<style>
+  :root{
+    --bg:#0b0e1a; --bg2:#10131f; --panel:#141827; --line:rgba(212,169,78,0.28);
+    --gold:#d4a94e; --gold-l:#eccf7f; --gold-pale:#e9d9ae; --ink:#d8d4c8; --dim:#8d8a80;
+    --ok:#7fbf8a; --hold:#b9a0c9; --ret:#c98a8a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-size:16px;background:radial-gradient(ellipse 120% 60% at 50% -10%, #1a1d2c 0%, var(--bg) 60%);
+    color:var(--ink); font-family:'Jost',sans-serif; font-weight:300; min-height:100vh}
+  .serif{font-family:'Cormorant Garamond',Georgia,serif}
+  .wrap{max-width:900px;margin:0 auto;padding:0 24px}
+
+  header{padding:64px 0 36px;text-align:center;border-bottom:1px solid var(--line)}
+  .star{width:84px;height:84px;margin:0 auto 18px;display:block}
+  h1{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:44px;letter-spacing:0.28em;text-indent:0.28em;
+    background:linear-gradient(135deg,#f9e7ad,#eccf7f 40%,#d4a94e 70%,#f3dd96);
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{margin-top:10px;font-size:13px;letter-spacing:0.34em;text-indent:0.34em;color:var(--gold);text-transform:uppercase}
+  .mockbadge{display:inline-block;margin-top:18px;padding:5px 14px;border:1px solid var(--ret);
+    color:var(--ret);font-size:11px;letter-spacing:0.22em;text-indent:0.22em;border-radius:3px}
+
+  nav{display:flex;justify-content:center;gap:8px;padding:18px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+  nav button{background:none;border:1px solid transparent;color:var(--dim);font-family:'Jost';font-weight:400;
+    font-size:15px;letter-spacing:0.18em;text-transform:uppercase;padding:9px 18px;cursor:pointer;border-radius:3px;transition:all .2s}
+  nav button:hover{color:var(--gold-pale)}
+  nav button.on{color:var(--gold-l);border-color:var(--line)}
+
+  section{display:none;padding:44px 0 80px}
+  section.on{display:block}
+  h2{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:32px;color:var(--gold-pale);margin-bottom:8px}
+  .rule{width:64px;height:1px;background:linear-gradient(90deg,var(--gold),transparent);margin:14px 0 26px}
+  p.lead{font-size:19px;line-height:1.75;color:var(--ink);max-width:640px}
+  p.fine{font-size:16px;line-height:1.7;color:var(--dim);max-width:640px;margin-top:14px}
+
+  /* lookup */
+  .lookupbox{margin:34px 0 10px;display:flex;gap:12px;max-width:560px}
+  .lookupbox input{flex:1;background:var(--panel);border:1px solid var(--line);color:var(--gold-pale);
+    font-family:'Jost';font-weight:400;font-size:17px;letter-spacing:0.12em;padding:15px 18px;border-radius:3px;outline:none}
+  .lookupbox input::placeholder{color:#5a5748;letter-spacing:0.1em}
+  .lookupbox button{background:linear-gradient(135deg,#e3c87e,#c89a3f);border:none;color:#1a1507;
+    font-family:'Jost';font-weight:500;font-size:14px;letter-spacing:0.2em;text-transform:uppercase;
+    padding:0 28px;cursor:pointer;border-radius:3px}
+  .hint{font-size:14.5px;color:var(--dim);letter-spacing:0.06em}
+  .hint code{color:var(--gold);font-family:inherit}
+
+  /* record card */
+  .record{margin-top:30px;background:var(--panel);border:1px solid var(--line);border-radius:4px;overflow:hidden;
+    animation:fade .4s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1}}
+  .rec-head{padding:26px 30px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+  .rec-serial{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:500;color:var(--gold-l);letter-spacing:0.06em}
+  .status{font-size:12.5px;letter-spacing:0.22em;text-indent:0.22em;text-transform:uppercase;padding:7px 16px;border-radius:3px;border:1px solid}
+  .st-issued{color:var(--ok);border-color:var(--ok)}
+  .st-reserved{color:var(--hold);border-color:var(--hold)}
+  .st-demo{color:var(--gold);border-color:var(--gold)}
+  .st-retired{color:var(--ret);border-color:var(--ret)}
+  .rec-body{padding:10px 30px 26px}
+  .row{display:flex;justify-content:space-between;gap:20px;padding:14px 0;border-bottom:1px solid rgba(212,169,78,0.1);font-size:16.5px}
+  .row:last-child{border-bottom:none}
+  .row .k{color:var(--dim);letter-spacing:0.08em}
+  .row .v{color:var(--ink);text-align:right;font-weight:400}
+  .row .v.gold{color:var(--gold-l)}
+  .notfound{margin-top:30px;padding:26px 30px;background:var(--panel);border:1px solid rgba(201,138,138,0.4);border-radius:4px;
+    color:var(--ret);font-size:14px;letter-spacing:0.04em;animation:fade .4s ease}
+  .covnote{padding:16px 30px;background:rgba(212,169,78,0.06);border-top:1px solid var(--line);
+    font-size:15px;line-height:1.65;color:var(--dim)}
+  .covnote b{color:var(--gold);font-weight:500}
+
+  /* census */
+  table{width:100%;border-collapse:collapse;margin-top:26px;font-size:16.5px}
+  th{font-weight:400;text-transform:uppercase;letter-spacing:0.16em;font-size:12.5px;color:var(--gold);
+    text-align:left;padding:12px 14px;border-bottom:1px solid var(--line)}
+  td{padding:14px;border-bottom:1px solid rgba(212,169,78,0.1);color:var(--ink)}
+  td.num{font-family:'Cormorant Garamond',serif;font-size:23px;color:var(--gold-pale)}
+  .asof{margin-top:12px;font-size:14px;color:var(--dim);font-style:italic}
+
+  /* covenants */
+  .cov{margin-top:26px;display:grid;gap:14px;max-width:680px}
+  .covcard{background:var(--panel);border:1px solid var(--line);border-left:2px solid var(--gold);
+    border-radius:3px;padding:18px 22px}
+  .covcard .t{font-family:'Cormorant Garamond',serif;font-size:23px;color:var(--gold-pale);margin-bottom:6px}
+  .covcard .d{font-size:16px;line-height:1.65;color:var(--dim)}
+
+  /* verification */
+  .vgrid{margin-top:26px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+  .vcard{background:var(--panel);border:1px solid var(--line);border-radius:3px;padding:20px 22px}
+  .vcard .t{font-size:13.5px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+  .vcard .d{font-size:16px;line-height:1.65;color:var(--ink)}
+  .vcard .d em{color:var(--dim);font-style:normal;font-size:14.5px}
+
+  footer{border-top:1px solid var(--line);padding:34px 0 50px;text-align:center}
+  .f1{font-size:12px;letter-spacing:0.3em;text-indent:0.3em;color:var(--gold);text-transform:uppercase}
+  .f2{margin-top:10px;font-size:13.5px;color:var(--dim);line-height:1.7;max-width:560px;margin-left:auto;margin-right:auto}
+  @media(max-width:600px){ h1{font-size:30px} .lookupbox{flex-direction:column} .lookupbox button{padding:14px} }
+</style>
+</head>
+<body>
+
+<header>
+  <svg class="star" viewBox="0 0 1600 1600">
+    <defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f9e7ad"/><stop offset="35%" stop-color="#eccf7f"/>
+      <stop offset="60%" stop-color="#d4a94e"/><stop offset="100%" stop-color="#f3dd96"/>
+    </linearGradient></defs>
+    <g id="hdrstar"></g>
+  </svg>
+  <h1>THE ARGO REGISTRY</h1>
+  <div class="sub">The public book of a closed series</div>
+  %BADGE%
+</header>
+
+<nav>
+  <button class="on" data-s="lookup">Verify a Serial</button>
+  <button data-s="census">The Series &amp; Census</button>
+  <button data-s="covenants">The Covenants</button>
+  <button data-s="jeweler">The Authorized Jeweler</button>
+  <button data-s="verification">How Verification Works</button>
+</nav>
+
+<div class="wrap">
+
+<!-- LOOKUP -->
+<section id="lookup" class="on">
+  <h2 class="serif">Verify a serial</h2>
+  <div class="rule"></div>
+  <p class="lead">Every Argo diamond is inscribed with a serial number and recorded here for the life of the stone. Enter a serial to see its public record.</p>
+  <div class="lookupbox">
+    <input id="q" placeholder="e.g.  ARGO D-2027-001  or  006" autocomplete="off">
+    <button onclick="look()">Verify</button>
+  </div>
+  <div class="hint">%LOOKUP_HINT%</div>
+  <div id="result"></div>
+</section>
+
+<!-- CENSUS -->
+<section id="census">
+  <h2 class="serif">The series</h2>
+  <div class="rule"></div>
+  <p class="lead">Each Argo series is one stone and one ceiling, declared in advance and never reopened. Settings are the owner's choice and are recorded in the registry.</p>
+  <div class="cov" style="margin-top:26px;max-width:100%">
+%SERIES_CARDS%
+  </div>
+
+  <h2 class="serif" style="margin-top:54px">The census</h2>
+  <div class="rule"></div>
+  <p class="lead">The registry publishes the standing count of every stone in every series — issued, reserved, retired, and demonstration. The census is the whole population. There are no other Argo diamonds.</p>
+  <table>
+    <tr><th>Series</th><th>Issued</th><th>Reserved</th><th>Retired Unissued</th><th>Demonstration</th><th>Ceiling</th></tr>
+%CENSUS_ROWS%
+  </table>
+  <div class="asof">%CENSUS_NOTE%</div>
+</section>
+
+<!-- COVENANTS -->
+<section id="covenants">
+  <h2 class="serif">The covenants</h2>
+  <div class="rule"></div>
+  <p class="lead">The rules of the edition are published before the first stone is sold, and each certificate repeats them. They are not policies. They are commitments the house has placed beyond its own reach.</p>
+  <div class="cov">
+    <div class="covcard"><div class="t">The series is closed.</div>
+      <div class="d">Each year-series states its ceiling in advance. Serials within a series are issued only in that series' year; a serial not issued in its year is retired permanently and recorded here as retired. No retired serial is ever revived.</div></div>
+    <div class="covcard"><div class="t">The lowest numbers are never offered.</div>
+      <div class="d">Serials 001–005 of the First Series are reserved to the house archive. Demonstration stones carry D-series serials, are flagged at creation, and are never sold.</div></div>
+    <div class="covcard"><div class="t">Every stone is inscribed and recorded.</div>
+      <div class="d">Each stone's girdle carries its serial. Each serial's record here carries the stone's grading report number, conformance certificate, and setting record, for the life of the stone.</div></div>
+    <div class="covcard"><div class="t">The book is audited.</div>
+      <div class="d">An independent CPA firm examines the registry annually under agreed-upon procedures and publishes its attestation letter here. The design of the cut is not part of any public record.</div></div>
+    <div class="covcard"><div class="t">The certificate is bonded.</div>
+      <div class="d">Each stone's certificate is sworn before a notary, recorded with the county, backed by surety bond, and enforceable as an express warranty. The bond number appears on the certificate.</div></div>
+    <div class="covcard"><div class="t">The book names stones, never owners.</div>
+      <div class="d">No owner, buyer, or price appears in any public record, ever. Transfers are recorded as events in a stone's history, not as identities. The census counts stones; it does not count people.</div></div>
+  </div>
+</section>
+
+<!-- JEWELER -->
+<section id="jeweler">
+  <h2 class="serif">The authorized jeweler</h2>
+  <div class="rule"></div>
+  <p class="lead">Every Argo diamond is sold through an authorized door. The registry records each authorization — holder, effective date, and standing — for the life of the program.</p>
+  <div class="cov" style="margin-top:30px">
+%AUTH_CARDS%
+  </div>
+  <p class="fine" style="margin-top:26px">What authorization means: issued stones are sold only through the authorization(s) named on this page for their series; authorized benches execute the recorded settings; demonstration stones are shown by appointment through authorized doors. Each stone's record names the authorization under which it was issued. Authorizations are never removed from this page — a concluded authorization remains in the book with its dates, exactly as a retired serial does.</p>
+  <p class="fine">A seller who does not appear on this page has never been authorized. A private sale outside an authorized door is verified by an authorized jeweler at the time of sale: the stone is presented, confirmed against its record, and the transfer is recorded. A stone offered without this verification should be checked against the registry before anything else.</p>
+</section>
+
+<!-- VERIFICATION -->
+<section id="verification">
+  <h2 class="serif">How verification works</h2>
+  <div class="rule"></div>
+  <p class="lead">Nothing in the Argo program asks for trust. Each claim is checkable against a party who does not answer to the house.</p>
+  <div class="vgrid">
+    <div class="vcard"><div class="t">The stone</div>
+      <div class="d">The girdle inscription matches this registry and the stone's independent grading report. <em>Checkable with any jeweler's loupe and the lab's own report-lookup service.</em></div></div>
+    <div class="vcard"><div class="t">The geometry</div>
+      <div class="d">Each stone passes a scan-verified conformance test before issuance; the certificate states the pass and its date. <em>The scan itself is sealed in the house archive — conformance is attested, geometry is never published.</em></div></div>
+    <div class="vcard"><div class="t">The counts</div>
+      <div class="d">The census on this site is examined annually by an independent CPA firm; the attestation letter is published here. <em>The firm is named; the letter is addressed for public distribution.</em></div></div>
+    <div class="vcard"><div class="t">The covenants</div>
+      <div class="d">Each certificate is sworn, county-recorded, surety-bonded, and enforceable as an express warranty. <em>Certified copies are available from the county clerk by anyone, forever.</em></div></div>
+  </div>
+  <p class="fine">The single exception to publication is the design of the cut itself — its angles, arrangement, and scan files — which is protected intellectual property and is never part of any public record. Everything else is upfront.</p>
+
+  <h2 class="serif" style="margin-top:54px">The Extract of the Registry</h2>
+  <div class="rule"></div>
+  <p class="lead">Beyond the public record, the house issues a formal Extract of the Registry — a sealed document reciting a stone's complete recorded history — to the stone's owner, their estate, or their insurer, upon request and verification of the stone.</p>
+  <p class="fine">One extract may be issued per stone in any twelve-month period. The extract recites the registry's records; it is not itself the bonded certificate, which travels with the stone from issuance. Whether an extract is issued rests with the house registrar alone. This public page is a record of standing, not a warranty document.</p>
+</section>
+
+</div>
+
+<footer>
+  <div class="f1">The Argo Diamond</div>
+  <div class="f2">A star as rare as the one who wears it. · First Series · 2027<br>
+  %FOOTER_NOTE%</div>
+</footer>
+
+<script>
+// header star
+(function(){
+  const NS='http://www.w3.org/2000/svg', g=document.getElementById('hdrstar');
+  const cx=800, cy=800, R=620, pts=[];
+  for(let k=0;k<10;k++){const a=(k*36-90)*Math.PI/180;pts.push([cx+R*Math.cos(a),cy+R*Math.sin(a)]);}
+  let d='M'+[...Array(11).keys()].map(i=>pts[(i*3)%10].map(v=>v.toFixed(1)).join(' ')).join(' L ')+' Z';
+  const p=document.createElementNS(NS,'path');
+  p.setAttribute('d',d);p.setAttribute('fill','none');
+  p.setAttribute('stroke','url(#g)');p.setAttribute('stroke-width','28');g.appendChild(p);
+  const dw=240, dh=270;
+  const dia=document.createElementNS(NS,'path');
+  dia.setAttribute('d',`M${cx-dw/2} ${cy-dh*0.14} L${cx-dw*0.28} ${cy-dh*0.46} L${cx+dw*0.28} ${cy-dh*0.46} L${cx+dw/2} ${cy-dh*0.14} L${cx} ${cy+dh*0.54} Z`);
+  dia.setAttribute('fill','none');dia.setAttribute('stroke','url(#g)');
+  dia.setAttribute('stroke-width','22');dia.setAttribute('stroke-linejoin','round');
+  g.appendChild(dia);
+  const fac=document.createElementNS(NS,'path');
+  fac.setAttribute('d',`M${cx-dw/2} ${cy-dh*0.14} L${cx+dw/2} ${cy-dh*0.14} M${cx-dw*0.28} ${cy-dh*0.46} L${cx-dw*0.16} ${cy-dh*0.14} L${cx} ${cy+dh*0.54} M${cx+dw*0.28} ${cy-dh*0.46} L${cx+dw*0.16} ${cy-dh*0.14}`);
+  fac.setAttribute('fill','none');fac.setAttribute('stroke','url(#g)');
+  fac.setAttribute('stroke-width','11');fac.setAttribute('opacity','0.8');
+  g.appendChild(fac);
+})();
+
+// nav
+document.querySelectorAll('nav button').forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll('nav button').forEach(x=>x.classList.remove('on'));
+    document.querySelectorAll('section').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+    document.getElementById(b.dataset.s).classList.add('on');
+  };
+});
+
+// specimen records — publication-tier compliant: no geometry anywhere
+const REC = %REC_JSON%;
+
+function look(){
+  const q=document.getElementById('q').value.trim().toUpperCase()
+    .replace(/^ARGO\s*/,'').replace(/^N[°O]\s*/,'').replace(/\s+/g,'');
+  const r=document.getElementById('result');
+  if(!q){ r.innerHTML=''; return; }
+  const key = REC[q] ? q : (REC[q.padStart(3,'0')] ? q.padStart(3,'0') : null);
+  if(!key){
+    r.innerHTML='<div class="notfound">No such serial exists in the Argo Registry. A serial that does not appear here was never issued — and never will be. If a stone claims this number, it is not an Argo.</div>';
+    return;
+  }
+  const rec=REC[key];
+  r.innerHTML = `<div class="record">
+    <div class="rec-head"><div class="rec-serial serif">${rec.serial}</div>
+      <div class="status ${rec.status[1]}">${rec.status[0]}</div></div>
+    <div class="rec-body">${rec.rows.map(([k,v])=>`<div class="row"><div class="k">${k}</div><div class="v${/PASS|never|Reserved/i.test(v)?' gold':''}">${v}</div></div>`).join('')}</div>
+    <div class="covnote"><b>Covenant line:</b> ${rec.note}</div>
+  </div>`;
+}
+document.getElementById('q').addEventListener('keydown',e=>{if(e.key==='Enter')look()});
+</script>
+</body>
+</html>
